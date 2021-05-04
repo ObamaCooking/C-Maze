@@ -18,5 +18,13 @@
     <ClCompile Include="program.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InitMaze.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="maze.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

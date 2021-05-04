@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InitMaze.c" />
     <ClCompile Include="program.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="maze.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
