@@ -60,10 +60,6 @@ char** InitMaze(char* mazeFilename, int mazeNum)
         fgets(str, MAXCHAR, filePointer);
         strcpy(maze[i], str);
     }
-    for (int i = 0; i < 7; i++)
-    {
-        printf("%s", maze[i]);
-    }
     
     // Now we can start reading the maze
     PrintMaze(NumOfRows, NumOfColumns, maze);
