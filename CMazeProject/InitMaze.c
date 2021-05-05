@@ -8,34 +8,46 @@
 
 char* PrintMaze(int Rows, int Columns, char** maze)
 {
-    char** array1 = malloc(Rows * sizeof(char*)); // Allocate row pointers
+    char** mazearr = malloc(Rows * sizeof(char*)); // Allocate row pointers
     for (int i = 0; i < Rows; i++)
-        array1[i] = malloc(Columns * sizeof(char));  // Allocate each row separately
+        mazearr[i] = malloc(Columns * sizeof(char));  // Allocate each row separately
     for (int i = 0; i < Rows; i++)
     {
         for (int j = 0; j < Columns; j++)
         {
-            //array1[i][j] = maze[i][j];
-            printf("%c", maze[i][j]);
-            //printf("%c",array1[i][j]);
+            mazearr[i][j] = maze[i][j];
         }
+        
     }
+    //a test, you can delete after adding printmaze function 
+    for (int i = 0; i < Rows; i++)
+    {
+        for (int j = 0; j < Columns; j++)
+        {
+            printf("%c", mazearr[i][j]);
+        }
+
+    }
+    //print maze function here :)
+    //printmaze(mazearr,rows,columns)
+}
+
+char* openfile(char* mazeFileName)
+{
+    FILE* filePointer;
+
+    filePointer = fopen(mazeFileName, "r");
+    if (filePointer == NULL) {
+        printf("Could not open file %s", mazeFileName);
+    }
+    return filePointer;
 }
 // Initmaze - returns an empty maze so that we are ready to start the game
 char** InitMaze(char* mazeFilename, int mazeNum)
 {
-    FILE* filePointer;
+    //FILE* filePointer
     char str[MAXCHAR];
-    //char strNumOfColumns[MAXDIMCHAR];
-    //char strNumOfRows[MAXDIMCHAR];
-    int isCommaFound = 0, commaLocation = 0;
-
-
-    filePointer = fopen(mazeFilename, "r");
-    if (filePointer == NULL) {
-        printf("Could not open file %s", mazeFilename);
-    }
-
+    FILE* filePointer = openfile(mazeFilename);
     fgets(str, MAXCHAR, filePointer);
     printf("%s", str);
     //save number of rows and columns using the first line 
@@ -43,7 +55,7 @@ char** InitMaze(char* mazeFilename, int mazeNum)
     int NumOfColumns = atoi(token);
     token = strtok(NULL, " ");
     int NumOfRows = atoi(token);
-
+   
 
     // We declare and allocate a pointer for each of their rows
     char** maze = malloc(NumOfColumns * sizeof(char*));
@@ -55,6 +67,8 @@ char** InitMaze(char* mazeFilename, int mazeNum)
 
 
     // Now that we have our pointers allocated, we need to fill them with the values for the current maze
+    // Every fgets has the next row. for example in the first time it will be the first row, in the second time it will be the second row, etc...
+    // In the print function, get the next numbers using the same way we did earlier, and then use the same way to print it.
     for (int i = 0; i < NumOfRows; i++)
     {
         fgets(str, MAXCHAR, filePointer);
